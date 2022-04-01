@@ -3,7 +3,7 @@ namespace LP1_P1_2022.Model
     public class Player
     {
         /// <summary>
-        /// Player appearance
+        /// Player table representation
         /// </summary>
         private char  _appearance;
 
