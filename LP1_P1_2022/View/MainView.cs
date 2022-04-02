@@ -17,6 +17,18 @@ namespace LP1_P1_2022.View
         }
 
         /// <summary>
+        /// Prints the game rules and waits for input to return to menu
+        /// </summary>
+        public void PrintRules()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Game Rules");
+
+            Console.ReadKey();
+        }
+
+        /// <summary>
         /// Prints the game table
         /// </summary>
         /// <param name="table">Game table</param>

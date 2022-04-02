@@ -17,6 +17,12 @@ namespace LP1_P1_2022.Controller
         // Current player turn
         private Player _playerTurn;
 
+        // Stores the random die value
+        private int dieValue;
+
+        // List of chained actions
+        private string actions;
+
         /// <summary>
         /// Controller constructor, receives table instance
         /// </summary>
@@ -128,6 +134,7 @@ namespace LP1_P1_2022.Controller
                         break;
 
                     case "2":
+                        view.PrintRules();
 
                         break;
 
@@ -147,6 +154,23 @@ namespace LP1_P1_2022.Controller
                 {
                 }
             } while (menu);
+        }
+
+        /// <summary>
+        /// Player movement with random die value
+        /// </summary>
+        /// <param name="player">Player to move (current player's turn)</param>
+        private void MovementDie(Player player)
+        {
+            actions = string.Empty;
+
+            dieValue = _rnd.Next(1, 7);
+
+            player.Position[0] += dieValue;
+
+            actions +=
+                $"Player {_playerTurn.Appearance}: Die = {dieValue}; " +
+                $"Advanced {dieValue} positions to a ";
         }
     }
 }
