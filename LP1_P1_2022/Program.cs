@@ -1,4 +1,8 @@
-﻿namespace LP1_P1_2022
+﻿using LP1_P1_2022.Model;
+using LP1_P1_2022.View;
+using LP1_P1_2022.Controller;
+
+namespace LP1_P1_2022
 {
     internal class Program
     {
@@ -13,8 +17,18 @@
             p.Run();
         }
 
+        /// <summary>
+        /// Method that runs the game using the MVC pattern
+        /// </summary>
         private void Run()
         {
+            Table _table = new Table(5, 5);
+
+            MainController mainController =
+                new MainController(_table);
+
+            MainView mainView = new MainView();
+            mainController.CoreLoop(mainView);
         }
     }
 }

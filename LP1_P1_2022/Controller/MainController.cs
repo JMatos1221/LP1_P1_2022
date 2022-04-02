@@ -97,5 +97,56 @@ namespace LP1_P1_2022.Controller
                 i++;
             }
         }
+
+        /// <summary>
+        /// /// Gameloop, runs endlessly until the player quits the game
+        /// </summary>
+        /// <param name="view">View object that outputs data and receives input
+        /// from the user</param>
+        public void CoreLoop(MainView view)
+        {
+            bool menu = true;
+            bool game = false;
+
+            // Menu loop
+            do
+            {
+                view.PrintMenu();
+
+                string option = view.ReadInput();
+
+                // Switch case to read the selected option
+                switch (option)
+                {
+                    case "1":
+                        Setup();
+
+                        view.PrintTable(_table, _players, "");
+
+                        game = true;
+
+                        break;
+
+                    case "2":
+
+                        break;
+
+                    case "3":
+                        menu = false;
+
+                        break;
+
+                    default:
+                        view.PrintError("menu");
+
+                        break;
+                }
+
+                // Game loop
+                while (game)
+                {
+                }
+            } while (menu);
+        }
     }
 }
