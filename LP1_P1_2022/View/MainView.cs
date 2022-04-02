@@ -20,7 +20,9 @@ namespace LP1_P1_2022.View
         /// Prints the game table
         /// </summary>
         /// <param name="table">Game table</param>
-        public void PrintTable(Table table)
+        /// <param name="players">Players</param>
+        /// <param name="actions">Actions that occurred</param>
+        public void PrintTable(Table table, Player[] players, string actions)
         {
             Console.Clear();
 
@@ -44,8 +46,84 @@ namespace LP1_P1_2022.View
                 Console.WriteLine();
             }
 
+            // Draw the players
+            DrawPlayers(table, players);
             Console.ResetColor();
             Console.WriteLine();
+            Console.WriteLine(actions);
+            // Prints the table colors description
+            Description();
+        }
+
+        /// <summary>
+        /// Draws the players on the table
+        /// </summary>
+        /// <param name="table">Game table</param>
+        /// <param name="players">Players</param>
+        private void DrawPlayers(Table table, Player[] players)
+        {
+            // Current cursor position
+            int[] cursorPos = { Console.CursorLeft, Console.CursorTop };
+
+            int xPos = players[0].Position[0];
+            int yPos = players[0].Position[1];
+
+            // If the player is on the table
+            if (xPos >= 0)
+            {
+                Console.BackgroundColor = GetColor(table.Spaces[yPos, xPos]);
+
+                xPos = yPos % 2 == 0 ? xPos * 4 : 4 * table.X - xPos * 4 - 4;
+                yPos = 4 - yPos;
+
+                // Places the cursor where the player is going to be drawn
+                Console.SetCursorPosition(xPos, yPos);
+
+                Console.Write($" {players[0].Appearance}  ");
+            }
+
+            xPos = players[1].Position[0];
+            yPos = players[1].Position[1];
+
+            // If the player is on the table
+            if (xPos >= 0)
+            {
+                Console.BackgroundColor = GetColor(table.Spaces[yPos, xPos]);
+
+                xPos = yPos % 2 == 0 ? xPos * 4 : 4 * table.X - xPos * 4 - 4;
+                yPos = 4 - yPos;
+
+                // Places the cursor where the player is going to be drawn
+                Console.SetCursorPosition(xPos, yPos);
+
+                Console.Write($" {players[1].Appearance}  ");
+            }
+
+            Console.ResetColor();
+
+            // Places the cursor where it was before drawing the players
+            Console.SetCursorPosition(cursorPos[0], cursorPos[1]);
+        }
+
+        /// <summary>
+        /// Prints the table colors description
+        /// </summary>
+        private void Description()
+        {
+            // Foreach enum value (Space type)
+            foreach (int spaceValue in Enum.GetValues(typeof(Space)))
+            {
+                Space space = (Space)spaceValue;
+
+                // Set space color
+                Console.BackgroundColor = GetColor(space);
+                Console.Write("  ");
+                Console.ResetColor();
+                Console.Write($" {space}\t");
+            }
+
+            Console.WriteLine("\n");
+            Console.ResetColor();
         }
 
         /// <summary>
