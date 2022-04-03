@@ -185,7 +185,7 @@ namespace LP1_P1_2022.Controller
             // While player is not on the board
             while (player.Position[0] > _table.X - 1 ||
                    player.Position[0] < 0)
-                   // If player exceeds the last space (winning space)
+                // If player exceeds the last space (winning space)
                 if (player.Position[1] == _table.Y - 1 &&
                     player.Position[0] > 0)
                 {
@@ -253,10 +253,12 @@ namespace LP1_P1_2022.Controller
                     return;
                 }
 
+                // Select special action to apply to
+                // the player based on space type
                 switch (currentSpace)
                 {
                     case Space.Snakes:
-                        // SnakesAction(target);
+                        SnakesAction(target);
 
                         actions +=
                             "Snakes special location; Moved down 1 row to a ";
@@ -264,7 +266,7 @@ namespace LP1_P1_2022.Controller
                         break;
 
                     case Space.Ladders:
-                        // LaddersAction(target);
+                        LaddersAction(target);
 
                         actions +=
                             "Ladders special location; Moved up 1 row to a ";
@@ -272,7 +274,7 @@ namespace LP1_P1_2022.Controller
                         break;
 
                     case Space.Cobra:
-                        // CobraAction(target);
+                        CobraAction(target);
 
                         actions += "Cobra special location; " +
                                    "Moved back to the start to a ";
@@ -280,7 +282,7 @@ namespace LP1_P1_2022.Controller
                         break;
 
                     case Space.Boost:
-                        // BoostAction(target);
+                        BoostAction(target);
 
                         actions +=
                             "Boost special location; " +
@@ -289,7 +291,7 @@ namespace LP1_P1_2022.Controller
                         break;
 
                     case Space.UTurn:
-                        // UTurnAction(target);
+                        UTurnAction(target);
 
                         actions +=
                             "U-Turn special location; " +
@@ -302,6 +304,53 @@ namespace LP1_P1_2022.Controller
                 // this is a Normal space (returns instead)
                 SpaceAction(target);
             }
+        }
+
+        /// <summary>
+        /// Snakes action, moves the player to the lower row
+        /// </summary>
+        /// <param name="target">Player to apply the action to</param>
+        private void SnakesAction(Player target)
+        {
+            target.Position[1] -= 1;
+            target.Position[0] = _table.X - 1 - target.Position[0];
+        }
+
+        /// <summary>
+        /// Ladder action, moves the player to the upper row
+        /// </summary>
+        /// <param name="target">Player to apply the action to</param>
+        private void LaddersAction(Player target)
+        {
+            target.Position[1] += 1;
+            target.Position[0] = _table.X - 1 - target.Position[0];
+        }
+
+        /// <summary>
+        /// Cobra action, moves the player to the first table position (0, 0)
+        /// </summary>
+        /// <param name="target">Player to apply the action to</param>
+        private void CobraAction(Player target)
+        {
+            target.Position = new[] { 0, 0 };
+        }
+
+        /// <summary>
+        /// Boost action, moves the player 2 spaces forward
+        /// </summary>
+        /// <param name="target">Player to apply the action to</param>
+        private void BoostAction(Player target)
+        {
+            target.Position[0] += 2;
+        }
+
+        /// <summary>
+        /// U-Turn action, moves the player 2 spaces backwards
+        /// </summary>
+        /// <param name="target">Player to apply the action to</param>
+        private void UTurnAction(Player target)
+        {
+            target.Position[0] -= 2;
         }
     }
 }
