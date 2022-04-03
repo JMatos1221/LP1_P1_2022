@@ -152,6 +152,15 @@ namespace LP1_P1_2022.Controller
                 // Game loop
                 while (game)
                 {
+                    view.ReadInput();
+
+                    MovementDie(_playerTurn);
+                    game = CheckGameEnd();
+
+                    view.PrintTable(_table, _players,
+                                    actions);
+
+                    if (!game) view.PrintGameEnd(_playerTurn);
                 }
             } while (menu);
         }
@@ -174,6 +183,7 @@ namespace LP1_P1_2022.Controller
 
             ClampPlayer(player);
 
+            SpaceAction(player);
         }
 
         /// <summary>
@@ -351,6 +361,33 @@ namespace LP1_P1_2022.Controller
         private void UTurnAction(Player target)
         {
             target.Position[0] -= 2;
+        }
+
+        /// <summary>
+        /// Checks if the game as ended, if not, changes player turn
+        /// </summary>
+        /// <returns> true if game is still running, false if not</returns>
+        private bool CheckGameEnd()
+        {
+            if (_playerTurn.Position[0] != _table.X - 1 ||
+                _playerTurn.Position[1] != _table.Y - 1)
+            {
+                ChangeTurn();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Changes player turn based on _playerTurn variable
+        /// </summary>
+        private void ChangeTurn()
+        {
+            _playerTurn = _playerTurn.Appearance == _players[0].Appearance
+                              ? _players[1]
+                              : _players[0];
         }
     }
 }
