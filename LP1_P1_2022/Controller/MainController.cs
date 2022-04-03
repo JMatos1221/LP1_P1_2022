@@ -229,6 +229,9 @@ namespace LP1_P1_2022.Controller
             if (_players[0].Position[0] == _players[1].Position[0] &&
                 _players[0].Position[1] == _players[1].Position[1])
             {
+                actions +=
+                   $"{_table.Spaces[target.Position[1], target.Position[0]]} ";
+
                 // Changes target to opponent
                 target = _playerTurn.Appearance == _players[0].Appearance
                              ? _players[1]
@@ -237,10 +240,8 @@ namespace LP1_P1_2022.Controller
                 // Opponent moves backwards 1 position
                 target.Position[0] -= 1;
 
-                actions +=
-                    $"{_table.Spaces[target.Position[1], target.Position[0]]} " +
-                    $"location; Player {target.Appearance} was there and " +
-                    "was moved back 1 position to a ";
+                actions += $"location; Player {target.Appearance} was there and " +
+                   "was moved back 1 position to a ";
             }
 
             // Clamp target, to make sure he's on board
