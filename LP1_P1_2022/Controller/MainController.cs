@@ -171,6 +171,45 @@ namespace LP1_P1_2022.Controller
             actions +=
                 $"Player {_playerTurn.Appearance}: Die = {dieValue}; " +
                 $"Advanced {dieValue} positions to a ";
+
+            ClampPlayer(player);
+
+        }
+
+        /// <summary>
+        /// Clamps the player's position, making sure he's placed on the board
+        /// </summary>
+        /// <param name="player">Player whose position needs clamping</param>
+        private void ClampPlayer(Player player)
+        {
+            // While player is not on the board
+            while (player.Position[0] > _table.X - 1 ||
+                   player.Position[0] < 0)
+                   // If player exceeds the last space (winning space)
+                if (player.Position[1] == _table.Y - 1 &&
+                    player.Position[0] > 0)
+                {
+                    player.Position[0] =
+                        _table.X - 1 -
+                        (player.Position[0] - (_table.X - 1));
+                }
+                // If player needs to go to the lower row
+                else if (player.Position[0] < 0)
+                {
+                    // If player is on the lowest row (off the table)
+                    if (player.Position[1] == 0)
+                        return;
+
+                    player.Position[1] -= 1;
+                    player.Position[0] += _table.X;
+                }
+                /*Else, player is moved normally to 
+                the next row (the row above)*/
+                else
+                {
+                    player.Position[1] += 1;
+                    player.Position[0] -= _table.X;
+                }
         }
     }
 }
