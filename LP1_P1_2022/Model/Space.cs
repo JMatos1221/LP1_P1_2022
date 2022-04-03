@@ -10,8 +10,6 @@ namespace LP1_P1_2022.Model
         Ladders = 2,
         Cobra = 3,
         Boost = 4,
-        UTurn = 5,
-        ExtraDie = 6,
-        CheatDie = 7
+        UTurn = 5
     }
 }

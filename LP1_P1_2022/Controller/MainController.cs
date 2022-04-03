@@ -61,9 +61,6 @@ namespace LP1_P1_2022.Controller
             GenerateSpace(Space.Boost, 0, 2, 0, _table.X - 1);
             // Generate U-Turns
             GenerateSpace(Space.UTurn, 0, 2, 1, _table.X);
-
-            // GenerateSpace(Space.ExtraDie, 1, 1, 0, _table.X);
-            // GenerateSpace(Space.CheatDie, 1, 1, 0, _table.X);
         }
 
         /// <summary>

@@ -24,6 +24,21 @@ namespace LP1_P1_2022.View
             Console.Clear();
 
             Console.WriteLine("Game Rules");
+            Console.WriteLine("-------------");
+            Console.WriteLine("Both players start off the board, " +
+            "and alternate turns playing.");
+            Console.WriteLine("The first player to reach the " +
+            "last board space, wins the game.");
+            Console.WriteLine("The player advances on the board " +
+            "by rolling a D6 die.");
+            Console.WriteLine("If the player lands on a special location, " +
+            "it activates the following action:");
+            Console.WriteLine("\tSnakes: Player goes one space below");
+            Console.WriteLine("\tLaders: Player goes one space above");
+            Console.WriteLine("\tCobra: Player go to the first " +
+            "space of the table");
+            Console.WriteLine("\tBoost: Player go foward two spaces");
+            Console.WriteLine("\tU-turn: Player go back two spaces.");
 
             Console.ReadKey();
         }
@@ -152,8 +167,6 @@ namespace LP1_P1_2022.View
                 Space.Cobra => ConsoleColor.Green,
                 Space.Boost => ConsoleColor.Cyan,
                 Space.UTurn => ConsoleColor.DarkMagenta,
-                Space.ExtraDie => ConsoleColor.White,
-                Space.CheatDie => ConsoleColor.Yellow,
                 _ => ConsoleColor.Black
             };
         }
