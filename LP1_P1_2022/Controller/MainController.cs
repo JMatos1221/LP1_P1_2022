@@ -252,6 +252,55 @@ namespace LP1_P1_2022.Controller
 
                     return;
                 }
+
+                switch (currentSpace)
+                {
+                    case Space.Snakes:
+                        // SnakesAction(target);
+
+                        actions +=
+                            "Snakes special location; Moved down 1 row to a ";
+
+                        break;
+
+                    case Space.Ladders:
+                        // LaddersAction(target);
+
+                        actions +=
+                            "Ladders special location; Moved up 1 row to a ";
+
+                        break;
+
+                    case Space.Cobra:
+                        // CobraAction(target);
+
+                        actions += "Cobra special location; " +
+                                   "Moved back to the start to a ";
+
+                        break;
+
+                    case Space.Boost:
+                        // BoostAction(target);
+
+                        actions +=
+                            "Boost special location; " +
+                            "Moved forward 2 positions to a ";
+
+                        break;
+
+                    case Space.UTurn:
+                        // UTurnAction(target);
+
+                        actions +=
+                            "U-Turn special location; " +
+                            "Moved back 2 positions to a ";
+
+                        break;
+                }
+
+                // Recursive call to trigger new space action, not called if
+                // this is a Normal space (returns instead)
+                SpaceAction(target);
             }
         }
     }
